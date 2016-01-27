@@ -136,6 +136,7 @@ moveNext() {
 }
 scrollDownInPlace() {
     Send, ^{Down}
+    Return
 }
 pagedown() {
     If isMarked()
