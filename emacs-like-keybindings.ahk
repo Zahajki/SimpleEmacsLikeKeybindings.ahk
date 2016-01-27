@@ -162,8 +162,8 @@ openline() {
 transpose() {
     unmark()
     clipSaved := ClipboardAll
-    Send, {ShiftDown}{Right}^x{Left}^v
-    Sleep, 10
+    Send, {ShiftDown}{Right}{ShiftUp}^x{Left}^v
+    Sleep, 0
     Clipboard := clipSaved
     clipSaved =
     Return
