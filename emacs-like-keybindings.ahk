@@ -8,8 +8,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 F13::Ctrl
 
 ; So I use #If directive here.
-#If     not WinActive("ahk_class VirtualConsoleClass")
-    and not WinActive("ahk_class ConsoleWindowClass")
+#If     Not WinActive("ahk_class ConsoleWindowClass")
+    And Not WinActive("ahk_class VirtualConsoleClass")
 
 ; ==============================================================
 ; Mark Region
@@ -42,7 +42,7 @@ isMarked() {
 }
 
 ; ==============================================================
-; Keys
+; Actions
 ; ==============================================================
 stop() {
     unmark()
@@ -51,98 +51,92 @@ stop() {
 }
 
 ; --------------
-; Move
+; Navigation
 ; --------------
 moveAhead() {
     If isMarked()
-        Send +{Home}
+        Send, +{Home}
     Else
-        Send {Home}
-    Return
-}
-moveAheadWord() {
-    If isMarked()
-        Send +^{Home}
-    Else
-        Send ^{Home}
+        Send, {Home}
     Return
 }
 moveEnd() {
     If isMarked()
-        Send +{End}
+        Send, +{End}
     Else
-        Send {End}
-    Return
-}
-moveEndWord() {
-    If isMarked()
-        Send +^{End}
-    Else
-        Send ^{End}
+        Send, {End}
     Return
 }
 moveForward() {
     If isMarked()
-        Send +{Right}
+        Send, +{Right}
     Else
-        Send {Right}
-    Return
-}
-moveForwardWord() {
-    If isMarked()
-        Send +^{Right}
-    Else
-        Send ^{Right}
+        Send, {Right}
     Return
 }
 moveBackward() {
     If isMarked()
-        Send +{Left}
+        Send, +{Left}
     Else
-        Send {Left}
+        Send, {Left}
+    Return
+}
+moveForwardWord() {
+    If isMarked()
+        Send, +^{Right}
+    Else
+        Send, ^{Right}
     Return
 }
 moveBackwardWord() {
     If isMarked()
-        Send +^{Left}
+        Send, +^{Left}
     Else
-        Send ^{Left}
+        Send, ^{Left}
     Return
 }
 movePrevious() {
     If isMarked()
-        Send +{Up}
+        Send, +{Up}
     Else
-        Send {Up}
-    Return
-}
-scrollUpInPlace() {
-    Send, ^{Up}
-    Return
-}
-pageup() {
-    If isMarked()
-        Send +{PgUp}
-    Else
-        Send {PgUp}
+        Send, {Up}
     Return
 }
 moveNext() {
     If isMarked()
-        Send +{Down}
+        Send, +{Down}
     Else
-        Send {Down}
+        Send, {Down}
+    Return
+}
+scrollUp() {
+    Send, ^{Up}
+    Return
+}
+scrollDown() {
+    Send, ^{Down}
+    Return
+}
+scrollUpInPlace() {
+    Send, ^{Up}{Up}
     Return
 }
 scrollDownInPlace() {
-    Send, ^{Down}
+    Send, ^{Down}{Down}
+    Return
+}
+pageup() {
+    If isMarked()
+        Send, +{PgUp}
+    Else
+        Send, {PgUp}
     Return
 }
 pagedown() {
     If isMarked()
-        Send +{PgDn}
+        Send, +{PgDn}
     Else
-        Send {PgDn}
+        Send, {PgDn}
     Return
 }
 
@@ -163,7 +157,7 @@ transpose() {
     unmark()
     clipSaved := ClipboardAll
     Send, {ShiftDown}{Right}{ShiftUp}^x{Left}^v
-    Sleep, 0
+    Sleep, 1
     Clipboard := clipSaved
     clipSaved =
     Return
@@ -232,12 +226,10 @@ F13 & f:: moveForward()
 F13 & b:: moveBackward()
 F13 & p:: movePrevious()
 F13 & n:: moveNext()
-vk1Dsc07B & a:: moveAheadWord()
-vk1Dsc07B & e:: moveEndWord()
 vk1Dsc07B & f:: moveForwardWord()
 vk1Dsc07B & b:: moveBackwardWord()
-vk1Dsc07B & p:: pageup()    ;scrollUpInPlace()
-vk1Dsc07B & n:: pagedown()  ;scrollDownInPlace()
+vk1Dsc07B & p:: scrollUpInPlace()    ;pageup()
+vk1Dsc07B & n:: scrollDownInPlace()  ;pagedown()
 
 F13 & m:: newline()
 F13 & o:: openline()
@@ -260,7 +252,7 @@ F13 & x:: cut()
 F13 & z:: undo()    ; This shortcut may confuse with C-y (Yank)
 
 ; --------------
-; Desable
+; Disabled
 ; --------------
 F13 & i::
 F13 & j::
@@ -268,8 +260,10 @@ F13 & l::
 F13 & q::
 F13 & r::
 F13 & u::
+vk1Dsc07B & a::
 vk1Dsc07B & c::
 vk1Dsc07B & d::
+vk1Dsc07B & e::
 vk1Dsc07B & g::
 vk1Dsc07B & h::
 vk1Dsc07B & i::
