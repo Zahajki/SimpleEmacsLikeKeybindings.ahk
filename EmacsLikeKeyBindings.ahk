@@ -165,7 +165,6 @@ transpose() {
     ClipWait, 1
     rightChar := Clipboard
     Clipboard := rightChar . leftChar
-    ClipWait, 1
     Send, {Left}{ShiftDown}{Right}{Right}{ShiftUp}^v{Left}
     Sleep, 1
     Clipboard := clipSaved
@@ -188,7 +187,7 @@ deleteForward() {
 ; --------------
 killLine() {
     unmark()
-    Send, {ShiftDown}{End}{ShiftUp}^x
+    Send, +{End}^x
     Return
 }
 paste() {
@@ -208,7 +207,7 @@ copy() {
 }
 
 ; --------------
-; Defaults
+; Others
 ; --------------
 save() {
     unmark()
@@ -218,6 +217,11 @@ save() {
 undo() {
     unmark()
     Send, ^z
+    Return
+}
+redo() {
+    unmark()
+    Send, ^y
     Return
 }
 
