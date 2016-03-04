@@ -15,12 +15,12 @@ F13::Ctrl
 ; Mark Region
 ; ==============================================================
 marked := 0
-mark() {
+setMark() {
     global marked
     marked := 1
     Return
 }
-unmark() {
+unsetMark() {
     global marked
     marked := 0
     Return
@@ -45,7 +45,7 @@ isMarked() {
 ; Actions
 ; ==============================================================
 stop() {
-    unmark()
+    unsetMark()
     Send, {Esc}
     Return
 }
@@ -144,17 +144,17 @@ pagedown() {
 ; Edit
 ; --------------
 newline() {
-    unmark()
+    unsetMark()
     Send, {Enter}
     Return
 }
 openline() {
-    unmark()
+    unsetMark()
     Send, {End}{Enter}{Up}
     Return
 }
 transpose() {
-    unmark()
+    unsetMark()
     clipSaved := ClipboardAll
     Clipboard =
     Send, +{Left}^c{Right}
@@ -172,12 +172,12 @@ transpose() {
     Return
 }
 deleteBackward() {
-    unmark()
+    unsetMark()
     Send, {Backspace}
     Return
 }
 deleteForward() {
-    unmark()
+    unsetMark()
     Send, {Delete}
     Return
 }
@@ -186,22 +186,22 @@ deleteForward() {
 ; Clipboard
 ; --------------
 killLine() {
-    unmark()
+    unsetMark()
     Send, +{End}^x
     Return
 }
 paste() {
-    unmark()
+    unsetMark()
     Send, ^v
     Return
 }
 cut() {
-    unmark()
+    unsetMark()
     Send, ^x
     Return
 }
 copy() {
-    unmark()
+    unsetMark()
     Send, ^c
     Return
 }
@@ -210,17 +210,17 @@ copy() {
 ; Others
 ; --------------
 save() {
-    unmark()
+    unsetMark()
     Send, ^s
     Return
 }
 undo() {
-    unmark()
+    unsetMark()
     Send, ^z
     Return
 }
 redo() {
-    unmark()
+    unsetMark()
     Send, ^y
     Return
 }
@@ -231,7 +231,7 @@ redo() {
 F13 & Space:: toggleMark()
 F13 & vk20sc039:: toggleMark()
 F13 & @:: toggleMark()
-~Esc:: unmark()
+~Esc:: unsetMark()
 F13 & g:: stop()
 
 F13 & a:: moveAhead()
