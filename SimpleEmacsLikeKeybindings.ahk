@@ -150,7 +150,7 @@ newline() {
 }
 openline() {
     unsetMark()
-    Send, {End}{Enter}{Up}
+    Send, {Enter}{Up}{End}
     Return
 }
 transpose() {

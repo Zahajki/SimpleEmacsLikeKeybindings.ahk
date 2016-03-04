@@ -16,7 +16,7 @@ This script assumes [<kbd>Caps</kbd> is remapped to <kbd>F13</kbd>](http://www.g
 |<kbd>F13</kbd>-<kbd>a</kbd>|<kbd>Home</kbd>|
 |<kbd>F13</kbd>-<kbd>e</kbd>|<kbd>End</kbd>|
 |<kbd>F13</kbd>-<kbd>m</kbd>|<kbd>Enter</kbd>|
-|<kbd>F13</kbd>-<kbd>o</kbd>|<kbd>End</kbd>, <kbd>Enter</kbd>, <kbd>&uarr;</kbd> (Open a new line).|
+|<kbd>F13</kbd>-<kbd>o</kbd>|<kbd>Enter</kbd>, <kbd>&uarr;</kbd>, <kbd>End</kbd> (Open a new line).|
 |<kbd>F13</kbd>-<kbd>t</kbd>|Transpose two characters.|
 |<kbd>F13</kbd>-<kbd>h</kbd>|<kbd>Backspace</kbd>|
 |<kbd>F13</kbd>-<kbd>d</kbd>|<kbd>Delete</kbd>|
